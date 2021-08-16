@@ -1,6 +1,6 @@
 package com.bootcamp.msTransaction.Handler;
 
-import com.bootcamp.msTransaction.models.entities.TransactionActive;
+import com.bootcamp.msTransaction.models.entities.Transaction;
 import com.bootcamp.msTransaction.services.ITransactionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,20 +24,20 @@ public class TransactionHandler {
         String identityNumber = request.pathVariable("identityNumber");
 
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(service.findAllByIdentityNumber(identityNumber), TransactionActive.class);
+                .body(service.findAllByIdentityNumber(identityNumber), Transaction.class);
     }
 
 
     public Mono<ServerResponse> findAll(ServerRequest request){
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(service.findAll(), TransactionActive.class);
+                .body(service.findAll(), Transaction.class);
     }
 
     public Mono<ServerResponse> newTransaction(ServerRequest request){
 
-        Mono<TransactionActive> transactionActiveMono = request.bodyToMono(TransactionActive.class);
+        Mono<Transaction> transactionMono = request.bodyToMono(Transaction.class);
 
-        return transactionActiveMono.flatMap( consumptionRequest -> service.create(consumptionRequest))
+        return transactionMono.flatMap( consumptionRequest -> service.create(consumptionRequest))
                 .flatMap( c -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)

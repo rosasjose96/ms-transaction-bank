@@ -1,6 +1,6 @@
 package com.bootcamp.msTransaction.services.Impl;
 
-import com.bootcamp.msTransaction.models.entities.TransactionActive;
+import com.bootcamp.msTransaction.models.entities.Transaction;
 import com.bootcamp.msTransaction.repositories.TransactionRepository;
 import com.bootcamp.msTransaction.services.ITransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,32 +16,32 @@ public class TransactionServiceImpl implements ITransactionService {
 
 
     @Override
-    public Mono<TransactionActive> create(TransactionActive o) {
+    public Mono<Transaction> create(Transaction o) {
         return repository.save(o);
     }
 
     @Override
-    public Flux<TransactionActive> findAll() {
+    public Flux<Transaction> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Mono<TransactionActive> findById(String s) {
+    public Mono<Transaction> findById(String s) {
         return repository.findById(s);
     }
 
     @Override
-    public Mono<Void> delete(TransactionActive o) {
+    public Mono<Void> delete(Transaction o) {
         return repository.delete(o);
     }
 
     @Override
-    public Mono<TransactionActive> update(TransactionActive o) {
+    public Mono<Transaction> update(Transaction o) {
         return repository.save(o);
     }
 
     @Override
-    public Flux<TransactionActive> findAllByIdentityNumber(String identityNumber) {
+    public Flux<Transaction> findAllByIdentityNumber(String identityNumber) {
         return repository.findAllByIdentityNumber(identityNumber);
     }
 }
