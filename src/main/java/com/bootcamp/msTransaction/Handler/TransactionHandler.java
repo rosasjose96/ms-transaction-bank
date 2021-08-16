@@ -37,7 +37,7 @@ public class TransactionHandler {
 
         Mono<Transaction> transactionMono = request.bodyToMono(Transaction.class);
 
-        return transactionMono.flatMap( consumptionRequest -> service.create(consumptionRequest))
+        return transactionMono.flatMap( Request -> service.create(Request))
                 .flatMap( c -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)

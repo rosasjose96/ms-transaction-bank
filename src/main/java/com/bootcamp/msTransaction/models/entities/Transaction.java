@@ -30,6 +30,10 @@ public class Transaction {
 
     private double transactionAmount;
 
+    private String destinationAccount;
+
+    private String transactionDescription;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private  LocalDateTime dateOperation = LocalDateTime.now();
 }
