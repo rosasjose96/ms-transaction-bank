@@ -33,6 +33,14 @@ public class TransactionHandler {
                 .body(service.findAll(), Transaction.class);
     }
 
+    public Mono<ServerResponse> findAllCommissions(ServerRequest request){
+        String identityNumber = request.pathVariable("identityNumber");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(service.findAll().filter(transaction -> transaction.getTypeoftransaction().equals("COMMISSION")
+                        && transaction.getIdentityNumber().equals(identityNumber))
+                        , Transaction.class);
+    }
+
     public Mono<ServerResponse> newTransaction(ServerRequest request){
 
         Mono<Transaction> transactionMono = request.bodyToMono(Transaction.class);

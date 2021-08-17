@@ -17,6 +17,7 @@ public class RouterConfig {
 
         return route(GET("/api/transaction"), transactionHandler::findAll)
                 .andRoute(GET("/api/transaction/{identityNumber}"), transactionHandler::findTransactionsByIdentityNumber)
+                .andRoute(GET("/api/transaction/commission/{identityNumber}"), transactionHandler::findAllCommissions)
                 .andRoute(POST("/api/transaction"), transactionHandler::newTransaction);
     }
 }
