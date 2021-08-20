@@ -8,6 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Transaction.
+ */
 @Document(collection = "transaction")
 @Getter
 @Setter
@@ -17,6 +20,9 @@ import java.time.LocalDateTime;
 @Builder
 public class Transaction {
 
+    /**
+     * The Id.
+     */
     @Id
     String id;
 
