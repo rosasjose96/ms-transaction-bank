@@ -36,7 +36,7 @@ public class Transaction {
 
     private double transactionAmount;
 
-    private String destinationAccount;
+    private String destination;
 
     private String transactionDescription;
 
