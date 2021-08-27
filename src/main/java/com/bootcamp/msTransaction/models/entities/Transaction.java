@@ -41,5 +41,5 @@ public class Transaction {
     private String transactionDescription;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private  LocalDateTime dateOperation = LocalDateTime.now();
+    private  LocalDateTime dateOperation;
 }

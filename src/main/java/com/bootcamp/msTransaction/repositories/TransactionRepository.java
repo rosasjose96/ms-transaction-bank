@@ -15,4 +15,6 @@ public interface TransactionRepository extends ReactiveMongoRepository<Transacti
      * @return the flux
      */
     Flux<Transaction> findAllByIdentityNumber(String identityNumber);
+
+    Flux<Transaction> findFirst10ByIdentityNumberOrderByDateOperationDesc(String identityNumber);
 }

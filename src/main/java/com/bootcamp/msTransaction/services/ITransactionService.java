@@ -14,4 +14,6 @@ public interface ITransactionService extends ICRUDService<Transaction,String> {
      * @return the flux
      */
     Flux<Transaction> findAllByIdentityNumber(String identityNumber);
+
+    Flux<Transaction> findFirst10ByIdentityNumberOrderByDateOperationDesc(String identityNumber);
 }

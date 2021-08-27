@@ -47,4 +47,9 @@ public class TransactionServiceImpl implements ITransactionService {
     public Flux<Transaction> findAllByIdentityNumber(String identityNumber) {
         return repository.findAllByIdentityNumber(identityNumber);
     }
+
+    @Override
+    public Flux<Transaction> findFirst10ByIdentityNumberOrderByDateOperationDesc(String identityNumber) {
+        return repository.findFirst10ByIdentityNumberOrderByDateOperationDesc(identityNumber);
+    }
 }

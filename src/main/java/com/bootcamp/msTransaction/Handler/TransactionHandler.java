@@ -62,6 +62,13 @@ public class TransactionHandler {
                         , Transaction.class);
     }
 
+    public Mono<ServerResponse> reportLastTen(ServerRequest request){
+        String identityNumber = request.pathVariable("identityNumber");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(service.findFirst10ByIdentityNumberOrderByDateOperationDesc(identityNumber)
+                        , Transaction.class);
+    }
+
     /**
      * New transaction mono.
      *
