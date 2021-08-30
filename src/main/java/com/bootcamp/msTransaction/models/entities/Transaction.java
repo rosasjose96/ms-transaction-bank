@@ -2,6 +2,7 @@ package com.bootcamp.msTransaction.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.google.inject.spi.PrivateElements;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -31,6 +32,8 @@ public class Transaction {
     private String identityNumber;
 
     private String typeOfAccount;
+
+    private String accountUsed;
 
     private String customerIdentityNumber;
 
