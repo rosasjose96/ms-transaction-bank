@@ -28,6 +28,8 @@ public class RouterConfig {
                 .andRoute(GET("/api/transaction/{identityNumber}"), transactionHandler::findTransactionsByIdentityNumber)
                 .andRoute(GET("/api/transaction/commission/{identityNumber}"), transactionHandler::findAllCommissions)
                 .andRoute(POST("/api/transaction"), transactionHandler::newTransaction)
-                .andRoute(GET("/api/transaction/report/{identityNumber}"),transactionHandler::reportLastTen);
+                .andRoute(GET("/api/transaction/report/{identityNumber}"),transactionHandler::reportLastTen)
+                .andRoute(GET("/api/transaction/search/{identityNumber}/{fromDate}/{toDate}")
+                        ,transactionHandler::findTransactionsByRangeOfDates);
     }
 }

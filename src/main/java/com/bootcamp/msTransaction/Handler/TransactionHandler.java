@@ -12,6 +12,9 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * The type Transaction handler.
  */
@@ -87,15 +90,21 @@ public class TransactionHandler {
     }
 
     /**
-     * Delete transaction mono.
+     * Search transactions in a range of dates with the format "yyyy-MM-dd HH:mm:ss".
      *
      * @param request the request
      * @return the mono
      */
-    public Mono<ServerResponse> deleteTransaction(ServerRequest request){
-        String id = request.pathVariable("id");
-        return service.findById(id)
-                .flatMap(service::delete)
-                .then(ServerResponse.noContent().build());
+    public Mono<ServerResponse> findTransactionsByRangeOfDates(ServerRequest request){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String identityNumber = request.pathVariable("identityNumber");
+
+        LocalDateTime fromDate = LocalDateTime.parse(request.pathVariable("fromDate"), formatter);
+        LocalDateTime toDate = LocalDateTime.parse(request.pathVariable("toDate"), formatter);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(service.findAllByIdentityNumberAndDateOperationBetween(identityNumber
+                , fromDate, toDate), Transaction.class);
     }
 }

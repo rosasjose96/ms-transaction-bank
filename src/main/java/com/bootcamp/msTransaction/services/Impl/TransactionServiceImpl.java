@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 /**
  * The type Transaction service.
  */
@@ -51,5 +53,12 @@ public class TransactionServiceImpl implements ITransactionService {
     @Override
     public Flux<Transaction> findFirst10ByIdentityNumberOrderByDateOperationDesc(String identityNumber) {
         return repository.findFirst10ByIdentityNumberOrderByDateOperationDesc(identityNumber);
+    }
+
+    @Override
+    public Flux<Transaction> findAllByIdentityNumberAndDateOperationBetween(String identityNumber
+            , LocalDateTime fromDate, LocalDateTime toDate) {
+        return repository.findAllByIdentityNumberAndDateOperationBetween(identityNumber
+                , fromDate, toDate);
     }
 }
